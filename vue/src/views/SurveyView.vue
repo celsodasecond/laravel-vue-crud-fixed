@@ -8,7 +8,7 @@
                 </h1>
 
             </div>
-        </template>  
+        </template>
         <form @submit.prevent="saveSurvey">
             <div class="shadow sm:rounded-md sm:overflow-hidden">
                 <!-- SURVEY FIELDS -->
@@ -180,6 +180,15 @@ function questionChange(question) {
             return q
         }
     )
+}
+
+function saveSurvey() {
+    store.dispatch("saveSurvey", model.value).then(({ data }) => {
+        router.push({
+            name: "SurveyView",
+            params: { id: data.data.id },
+        });
+    });
 }
 
 </script>
