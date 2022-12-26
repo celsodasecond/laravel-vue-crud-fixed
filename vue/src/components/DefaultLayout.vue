@@ -18,9 +18,11 @@
                         </div>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
-                                <router-link v-for="item in navigation" :key="item.name" :to="item.to" active-class="bg-gray-900 text-white"
-                                    :class="[this.$route.name === item.to.name ? '' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-                                    >{{ item.name }}</router-link>
+                                <router-link v-for="item in navigation" :key="item.name" :to="item.to"
+                                    active-class="bg-gray-900 text-white"
+                                    :class="[this.$route.name === item.to.name ? '' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']">{{
+        item.name
+}}</router-link>
                             </div>
                         </div>
                     </div>
@@ -47,8 +49,8 @@
                                         <MenuItem v-slot="{ active }">
                                         <a @click="logout"
                                             :class="['block px-4 py-2 text-sm text-gray-700 cursor-pointer']">
-                                                    Sign Out
-                                            </a>
+                                            Sign Out
+                                        </a>
                                         </MenuItem>
                                     </MenuItems>
                                 </transition>
@@ -69,9 +71,11 @@
 
             <DisclosurePanel class="md:hidden">
                 <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-                    <router-link v-for="item in navigation" :key="item.name" :to="item.to" active-class="bg-gray-900 text-white"
-                        :class="[this.$route.name === item.to.name ? '' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium']"
-                        >{{ item.name }}</router-link>
+                    <router-link v-for="item in navigation" :key="item.name" :to="item.to"
+                        active-class="bg-gray-900 text-white"
+                        :class="[this.$route.name === item.to.name ? '' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium']">{{
+        item.name
+}}</router-link>
                 </div>
                 <div class="border-t border-gray-700 pt-4 pb-3">
                     <div class="flex items-center px-5">
@@ -130,10 +134,12 @@ export default {
         const router = useRouter();
 
         function logout() {
-            store.commit('logout');
-            router.push({
-                name: 'Login'
-            })
+            store.dispatch("logout")
+                .then(() => {
+                    router.push({
+                        name: "Login"
+                    });
+                });
         }
 
         return {
