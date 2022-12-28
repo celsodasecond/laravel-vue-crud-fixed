@@ -31,7 +31,7 @@ class SurveyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreSurveyRequest $request)
-    {  
+    {
         $data = $request->validated();
 
         // Check if image was given then save on local fs.
@@ -55,7 +55,7 @@ class SurveyController extends Controller
     public function show(Survey $survey, Request $request)
     {
         $user = $request->user();
-        if ($user->id !== $survey->user_id){
+        if ($user->id !== $survey->user_id) {
             return abort(403, 'Unauthorized Action');
         }
         return new SurveyResource($survey);
@@ -70,7 +70,21 @@ class SurveyController extends Controller
      */
     public function update(UpdateSurveyRequest $request, Survey $survey)
     {
-        $survey->update($request->validated());
+        $data = $request->validated();
+
+        if (isset($data['image'])){
+            $relativePath = $this->saveImage($data['image']);
+            $data['image'] = $relativePath;
+
+            // Delete if there is old image,
+            if ($survey->image) {
+                $absolutePath = public_path($survey->image);
+                File::delete($absolutePath);
+            }
+        }
+
+        // Update survey in db
+        $survey->update($data);
         return new SurveyResource($survey);
     }
 
@@ -110,7 +124,6 @@ class SurveyController extends Controller
             if ($image === false) {
                 throw new \Exception('base64_decode failed');
             }
-
         } else {
             throw new \Exception('did not match data URI with image data');
         }
@@ -126,5 +139,4 @@ class SurveyController extends Controller
 
         return $relativePath;
     }
-
 }
