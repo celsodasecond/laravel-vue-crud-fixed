@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+        <img class="mx-auto h-6 w-auto animate__animated animate__bounceInUp" src="../../public/logos/mega-surveys-high-resolution-logo-color-on-transparent-background.png"
             alt="Your Company" />
         <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account
         </h2>
