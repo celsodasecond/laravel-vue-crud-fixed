@@ -72,7 +72,7 @@ class SurveyController extends Controller
     {
         $data = $request->validated();
 
-        if (isset($data['image'])){
+        if (isset($data['image'])) {
             $relativePath = $this->saveImage($data['image']);
             $data['image'] = $relativePath;
 
@@ -102,6 +102,13 @@ class SurveyController extends Controller
         }
 
         $survey->delete();
+
+        // Delete if there is old image,
+        if ($survey->image) {
+            $absolutePath = public_path($survey->image);
+            File::delete($absolutePath);
+        }
+
         return response('', 204);
     }
 
