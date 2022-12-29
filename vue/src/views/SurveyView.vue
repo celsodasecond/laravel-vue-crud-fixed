@@ -57,6 +57,7 @@
                     <div>
                         <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                         <input type="text" name="title" id="title" v-model="model.title" auto-complete="survey_title"
+                            required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                     <!--/ TITLE -->
@@ -75,9 +76,10 @@
                     <!-- EXPIRE DATE -->
                     <div>
                         <label for="expire_date" class="block text-sm font-medium text-gray-700">
-                            Expire Date
+                            Expire Date <p class="font-normal inline">(Leave blank if no expiry)</p>
                         </label>
                         <input type="date" name="expire_date" id="expire_date" v-model="model.expire_date"
+                            :min="dayAfterTom"
                             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm-text-sm border border-gray-300 rounded-md">
                     </div>
                     <!--/ EXPIRE DATE -->
@@ -153,6 +155,14 @@ const route = useRoute();
 
 const surveyLoading = computed(() => store.state.currentSurvey.loading)
 
+const errors = ref({});
+
+// Date Validation
+var minDate = new Date()
+var numberOfDaysToAdd = 2;
+var dayAfterTom = new Date(minDate.setDate(minDate.getDate() + numberOfDaysToAdd));
+dayAfterTom = dayAfterTom.toISOString().split('T')[0]
+
 // Create Empty Survey
 let model = ref({
     title: "",
@@ -177,7 +187,6 @@ watch(
 if (route.params.id) {
     store.dispatch('getSurvey', route.params.id);
 }
-
 
 
 function onImageChoose(ev) {
@@ -227,13 +236,20 @@ function saveSurvey() {
     store.dispatch("saveSurvey", model.value).then(({ data }) => {
         store.commit('notify', {
             type: 'success',
-            message: 'Survey was sucessfully updated'
+            message: 'Survey was successfully updated'
         })
         router.push({
             name: "SurveyView",
             params: { id: data.data.id },
         });
-    });
+    })
+        .catch(error => {
+            errors.value = error.response.data.errors.expire_date[0],
+                store.commit('notify', {
+                    type: 'failed',
+                    message: errors
+                })
+        });
 }
 
 function deleteSurvey() {
