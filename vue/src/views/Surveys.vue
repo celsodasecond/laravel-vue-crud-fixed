@@ -15,9 +15,16 @@
             </div>
         </template>
 
-        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 animate__animated animate__slideInUp">
+        <div v-if="surveys.loading" class="flex justify-center">
+        <div class="flex items-center justify-center space-x-2">
+            <div class="w-4 h-4 rounded-full animate-pulse dark:bg-gray-800"></div>
+            <div class="w-4 h-4 rounded-full animate-pulse dark:bg-gray-800"></div>
+            <div class="w-4 h-4 rounded-full animate-pulse dark:bg-gray-800"></div>
+        </div>
+        </div>
+        <div v-else class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 animate__animated animate__slideInUp">
             <SurveyListItem 
-            v-for="survey in surveys" 
+            v-for="survey in surveys.data" 
             :key="survey.id" 
             :survey="survey"
             @delete="deleteSurvey(survey)"
@@ -32,7 +39,7 @@ import { computed } from 'vue';
 import PageComponent from '../components/PageComponent.vue';
 import SurveyListItem from '../components/SurveyListItem.vue';
 
-const surveys = computed(() => store.state.surveys.data);
+const surveys = computed(() => store.state.surveys);
 
 store.dispatch('getSurveys')
 
