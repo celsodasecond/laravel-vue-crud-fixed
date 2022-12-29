@@ -156,6 +156,7 @@ class SurveyController extends Controller
 
     private function saveImage($image)
     {
+
         // Check if image is Base64
         if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
             // Take out base 64 w/o MIME type.
@@ -164,7 +165,7 @@ class SurveyController extends Controller
             $type = strtolower($type[1]); //jpg, png, gif
 
             // Check if file is an image
-            if (!in_array($type, ['jpg', 'jpeg', 'gif', 'png'])) {
+            if (!in_array($type, ['jpg', 'jpeg', 'gif', 'png', 'webp', 'bmp', 'svg'])) {
                 throw new \Exception('invalid image type');
             }
             $image = str_replace(' ', '+', $image);
