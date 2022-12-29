@@ -45,7 +45,7 @@
                         link.active
                         ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
                         : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
-                        i === 0 ? 'rounded-1-md' : '',
+                        i === 0 ? 'rounded-l-md' : '',
                         i === surveys.links.length - 1 ? 'rounded-r-md' : '',
                     ]">
 
