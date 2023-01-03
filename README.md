@@ -12,6 +12,15 @@
 ![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
+## Screenshots:
+
+### Login Page:
+![image](https://user-images.githubusercontent.com/75917932/210307189-a4b77b0a-27bb-4fdd-863f-9e989ed007c6.png)
+
+### Registration Page:
+![image](https://user-images.githubusercontent.com/75917932/210307208-7b015690-0f15-49cf-940a-09966c101407.png)
+
+
 
 ## What is this Project ?
 
