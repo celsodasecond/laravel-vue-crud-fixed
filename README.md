@@ -20,13 +20,21 @@
 ### Registration Page:
 ![image](https://user-images.githubusercontent.com/75917932/210307208-7b015690-0f15-49cf-940a-09966c101407.png)
 
+### Dashboard:
+![image](https://user-images.githubusercontent.com/75917932/210308852-8bd9fa56-47b6-4af0-9087-f3dae4227069.png)
 
+### Surveys:
+![image](https://user-images.githubusercontent.com/75917932/210308885-bf77bffa-dfc6-4c2b-bd39-c62308addfde.png)
 
 ## What is this Project ?
 
 This project is the successor of [Laravel-Vue-CRUD](https://github.com/celsodasecond/laravel-vue-crud) which is more stable and is fixed. 
 
-This project is built to create, read, update, and delete reviews of the user. A user can only do these operations on his/her own posted reviews. A user has authentications to CRUD if and only if the user logs in successfully or registers successfully. 
+This project is built to:
+- Create, Read, Update, and Delete reviews of the user. 
+- A user can only do these operations on his/her own posted reviews. 
+- A user has authentications to CRUD if and only if the user logs in successfully or registers successfully.
+- The owner of the survey (user) can share the survey to be answered by the receiver of the link.
 
 ## How to Build ?
 
