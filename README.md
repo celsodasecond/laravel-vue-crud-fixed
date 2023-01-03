@@ -1,4 +1,8 @@
-# Reviews Creation Website 
+![mega-surveys-high-resolution-logo-color-on-transparent-background](https://user-images.githubusercontent.com/75917932/210292890-24e3132f-3312-408e-9a36-a00758bf71bd.png)
+
+<hr/>
+
+# A Reviews Management System Web Application 
 ## Made With: 
 ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white) 
 ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) 
@@ -41,7 +45,16 @@ All usage instruction and information update on [LARAVEL-README.md](https://gith
 2. Run npm install to install vue.js project dependencies
 3. Edit vite.config.js to configure your defined port.
 4. Start frontend by running npm run dev
-5. Open http://localhost:3000 (Modified - Original port was 5173)
+5. Open http://localhost:3000 (Modified - Original port was 5173). 
+6. To change port, modify it inside vite.config.js: (optional) 
+```
+export default defineConfig({
+  plugins: [vue()],
+  server: {
+    port: 3000
+  }
+})
+```
 
 #### Built With
 
